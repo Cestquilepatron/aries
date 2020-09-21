@@ -511,9 +511,9 @@ pub fn fichierdotmenacemat<T,I : Display>(mat: &DMatrix<i32>, plan : &Vec<Op>,gr
             for c in 0..col{      
                 if mat[(r,c)]==1{
                     if c == t{
-                        println!("on ne menace pas les buts: erreur taille de la matrice");
+                        println!("Can't threaten goals: error size of matrix");
                     }else if c == t+1 {
-                        println!("erreur taille de la matrice en {}{}",r,c);
+                        println!("error size of matrix in  {}{}",r,c);
                     }else{
                         let namer=&ground.operators.name(*plan.get(r).unwrap());
                         let namec=&ground.operators.name(*plan.get(c).unwrap());
@@ -527,9 +527,9 @@ pub fn fichierdotmenacemat<T,I : Display>(mat: &DMatrix<i32>, plan : &Vec<Op>,gr
                 }
                 else if mat[(r,c)]==-1{
                     if c == t{
-                        println!("on ne menace pas les buts: erreur taille de la matrice");
+                        println!("Can't threaten goals: error size of matrix");
                     }else if c == t+1 {
-                        println!("erreur taille de la matrice en {}{}",r,c);
+                        println!("error size of matrix in {}{}",r,c);
                     }else{
                         let namer=&ground.operators.name(*plan.get(r).unwrap());
                         let namec=&ground.operators.name(*plan.get(c).unwrap());
@@ -542,9 +542,9 @@ pub fn fichierdotmenacemat<T,I : Display>(mat: &DMatrix<i32>, plan : &Vec<Op>,gr
                 }
                 else if mat[(r,c)]==-2{
                     if c == t{
-                        println!("on ne menace pas les buts");
+                        println!("Can't threaten goals: error size of matrix");
                     }else if c == t+1 {
-                        println!("erreur taille de la matrice en {}{}",r,c);
+                        println!("error size of matrix in {}{}",r,c);
                     }else{
                         let namer=&ground.operators.name(*plan.get(r).unwrap());
                         let namec=&ground.operators.name(*plan.get(c).unwrap());
@@ -555,7 +555,7 @@ pub fn fichierdotmenacemat<T,I : Display>(mat: &DMatrix<i32>, plan : &Vec<Op>,gr
                             .expect("Something went wrong writing the file");
                     }
                 }else if mat[(r,c)]!=0 {
-                    println!("erreur dans la matrice en {}{}",r,c);
+                    println!("error size of matrix in {}{}",r,c);
                 }
 
             }

@@ -43,7 +43,7 @@ pub fn compare(initial_state: &State, inter_state: &State){
             }
         }
     }
-    println!("il y a {} changments entre les états",diff);
+    println!("There are {} changes between states",diff);
 }
 
 //donne état après passage op et garde historique des changements
@@ -87,7 +87,7 @@ pub fn comparehisto(h1:&Vec<Resume>,h2:&Vec<Resume>){
             }
         }
     }
-    println!("il y a {} changments entre les histo",diff);
+    println!("There are {} changes between histo",diff);
 }
 
 
@@ -1565,11 +1565,11 @@ pub fn explicationmenacequestiondetail(plan: &Vec<Op>,menace: &DMatrix<i32>,supp
             }
             
         }else{
-            println!("Erreur valeur matrice");
+            println!("Error value matrix");
             return None
         }
     }else{
-        println!("Erreur init matrice");
+        println!("Error init matrix");
     }
     return None
 }
@@ -2420,7 +2420,7 @@ pub fn coordination(parametre : &Vec<String>,plan : &Vec<Op>,ground: &GroundProb
     for param in parametre{
         let id= symbol.id(param);
         if id.is_none(){
-            println!("erreur entrée paramètre");
+            println!("error input parameters");
         }
         else{
             if h.get_mut(&id.unwrap()).is_none(){
@@ -2445,9 +2445,9 @@ pub fn affichagecoordination<T,I : Display>(h: &HashMap<SymId,Vec<Op>>, ground: 
     for (i,vec) in h.iter(){
         let vecinter = vec![*i];
         let slice = &vecinter[..];
-        println!("Le paramètre {} est utilisé dans :",wo.table.format(slice));
+        println!("The parameter {} is used in :",wo.table.format(slice));
         for op in vec{
-            println!("  l'opérateur {}",wo.table.format(&ground.operators.name(*op)));
+            println!("  The operator {}",wo.table.format(&ground.operators.name(*op)));
         }
     }
 }
@@ -2552,7 +2552,7 @@ pub fn coordinationmultiple(parametre : &Vec<String>,plan : &Vec<Op>,ground: &Gr
     for param in parametre{
         let id= symbol.id(param);
         if id.is_none(){
-            println!("erreur entrée paramètre");
+            println!("error input parameters");
         }
         else{
             if !paramid.contains(&id.unwrap()){
@@ -2584,78 +2584,3 @@ pub fn liencoormultisynchro(liste : &Vec<Op>,parametre : &Vec<String>,symbol: &S
     }
     h
 }
-//Tentative goulot avec flot max / coupe min
-/*
-pub fn chaineameliorante(support : DMatrix<i32>,flotprec :DMatrix<i32>)->bool{
-    let mut file=Vec::new();
-    let mut marquer=Vec::new();
-    let taille=support.nrows();
-    /*flot=Vec::with_capacity(taille-2);
-    for i in 0..taille-2{
-        flot.push(0);
-    }*/
-    let mut flot = flotprec.clone();
-    //let mut flot = DMatrix::from_diagonal_element(taille-1,taille-1,0);
-    /*for l in 0..taille-1{
-        for c in 0..taille-1{
-            if support[]
-        }
-    }*/
-
-    file.push(0);
-    while !file.is_empty(){
-        let n=file.remove(0);
-        for y in 0..taille-1{
-            if support[(n,y)]==1{
-                //regarder si y est marqué et si on peut améliorer son flot
-                let mut m = false;
-                for mark in &marquer{
-                    if support[(n,y)]==*mark{
-                        m=true;
-                    }
-                } 
-                if m && ( flot[(n,y)]<support[(n,y)] ){
-                    let y32= y as i32;
-                    marquer.push(y32);
-                    file.push(y);  
-                }
-            }//reste à faire premier rouge
-            if support[(y,n)]==1{
-                let mut m = false;
-                for mark in &marquer{
-                    if support[(y,n)]==*mark{
-                        m=true;
-                    }
-                }
-                if m && ( 0<flot[(y,n)] ){
-                    let y32= y as i32;
-                    marquer.push(y32);
-                    file.push(y); 
-                }
-            }
-        }
-    }
-    let t = taille as i32;
-    let u=t-1;
-    if marquer.contains(&u){
-        true
-    }else{
-        false
-    }
-
-}
-
-pub fn fordfulkerson(support : DMatrix<i32>)->DMatrix<i32>{
-    let mut flot = DMatrix::from_diagonal_element(taille-1,taille-1,0);
-    let mut ecart = DMatrix::from_diagonal_element(taille-1,taille-1,0);
-    while chaineameliorante(support,flot) {
-        for l in 0..taille-1{
-            for c in 0..taille-1{
-                ecart[(l,c)]=support[(l,c)]-flot[(l,c)];
-            }
-        }
-        if  chaineameliorante(support,flot){
-
-        }
-    }
-}*/

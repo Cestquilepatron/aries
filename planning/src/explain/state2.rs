@@ -54,11 +54,11 @@ impl Necessaire{
     pub fn presence(&self,res:Resume)->bool{self.operateur==res}
 
     pub fn affiche (&self){
-        println!(" l'étape {} est nécessaire {} dans le chemin de longueur {} composé par :"/*,self.opnec().op()*/,self.opnec().numero(),self.nec,self.long());
+        println!(" The {}th step is necessary {} in the path  {} composed by :"/*,self.opnec().op()*/,self.opnec().numero(),self.nec,self.long());
         if self.chemin().is_none(){println!("pas de chemin");}
         else{
             for res in self.chemin().unwrap(){
-                println!(" l'étape {}", res.numero());
+                println!(" step number {}", res.numero());
             }
         }
     }
@@ -145,7 +145,7 @@ impl Obligationtemp{
         }
     }
     pub fn affichage(&self){
-         println!(" l'étape {} et l'étape {} ne sont pas inversible",self.etape1,self.etape2);
+         println!(" step {} and step {} aren't invertible",self.etape1,self.etape2);
     }
 }
 
@@ -171,7 +171,7 @@ pub fn originenonp(p:Parallelisable)->usize{
         Parallelisable::Non_menace {origine,vers}=> origine,
         Parallelisable::Non_support {origine,vers}=> origine,
         _=>{
-            println!("Les 2 étapes sont parallelisable");
+            println!("The 2 steps are parallelizable");
             0
         }
     }
@@ -182,7 +182,7 @@ pub fn ciblenonp(p:Parallelisable)->usize{
         Parallelisable::Non_menace {origine,vers}=> vers,
         Parallelisable::Non_support {origine,vers}=> vers,
         _=>{
-            println!("Les 2 étapes sont parallelisable");
+            println!("The 2 steps are parallelizable");
             0
         }
     }
@@ -204,7 +204,7 @@ pub fn originenonpad(p:Parallelisabledetail)->usize{
         Parallelisabledetail::Support_Direct {origine,vers}=> origine,
         Parallelisabledetail::Support_Indirect {origine,vers,chemin}=> origine,
         _=>{
-            println!("Les 2 étapes sont parallelisable");
+            println!("The 2 steps are parallelizable");
             0
         }
     }
@@ -240,7 +240,7 @@ pub fn pad_detail(p:Parallelisabledetail)->Vec<Option<usize>>{
                                                                                                     v
                                                                                                 },
         _ => {
-            println!(" Pas de détails supplémentaire");
+            println!(" No more detail available");
             let mut v=Vec::new();
             v.push(None);
             v
